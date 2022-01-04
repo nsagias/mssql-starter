@@ -34,7 +34,7 @@ namespace SqlServerSample
               // create table and insert mock data manually
               Console.Write("Creating smaple table with data, press any key to continue");
               Console.ReadKey(true);
-              // create new string builder
+              // create use new table and insert rows using string builder
               StringBuilder sb = new StringBuilder();
               sb.Append("USE FirstExampleDB; ");
               sb.Append("CREATE TABLE Employees ( ");
@@ -47,7 +47,11 @@ namespace SqlServerSample
               sb.Append("(N'Bob', N'Lost Country'), ");
               sb.Append("(N'Dingo', N'Australia'), ");
               sql = sb.ToString();
-
+              // execute insertion into database and say done when complete
+              using (SqlCommand command = new SqlCommand(sql, connection)) {
+                command.ExecuteNonQuery();
+                Console.WriteLine("Done.");
+              }
 
             }
   
