@@ -36,7 +36,17 @@ namespace SqlServerSample
               Console.ReadKey(true);
               // create new string builder
               StringBuilder sb = new StringBuilder();
-              sb.Append();
+              sb.Append("USE FirstExampleDB; ");
+              sb.Append("CREATE TABLE Employees ( ");
+              sb.Append(" Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY, ");
+              sb.Append(" Name NVARCHAR(50), ");
+              sb.Append(" Location NVARCHAR(50) ");
+              sb.Append("); ");
+              sb.Append("INSERT INTO Employees (Name, Location) VALUES ");
+              sb.Append("(N'Nick', N'Canada'), ");
+              sb.Append("(N'Bob', N'Lost Country'), ");
+              sb.Append("(N'Dingo', N'Australia'), ");
+              sql = sb.ToString();
 
 
             }
