@@ -24,13 +24,19 @@ namespace SqlServerSample
 
               // create a sample database
               Console.Write("Dropping and creating database sample data .....");
-              String sql = "DROP DATABASE IF EXISTS [firstExampleDB]; CREATE DATABASE [firstExampleDB";
+              String sql = "DROP DATABASE IF EXISTS [FirstExampleDB]; CREATE DATABASE [FirstExampleDB";
               
               // create command/cmd for sql
               using (SqlCommand command = new SqlCommand(sql, connection)) {
                 command.ExecuteNonQuery();
                 Console.WriteLine("Done.");
               }
+              // create table and insert mock data manually
+              Console.Write("Creating smaple table with data, press any key to continue");
+              Console.ReadKey(true);
+              // create new string builder
+              StringBuilder sb = new StringBuilder();
+              sb.Append();
 
 
             }
