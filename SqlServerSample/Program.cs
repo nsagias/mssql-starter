@@ -74,6 +74,22 @@ namespace SqlServerSample
                 Console.WriteLine($"{rowsAffected} row(s) inserted");
               }
 
+              // update one user
+              String userToUpdate = "Bob";
+              Console.Write($"Updating 'location' for user '{userToUpdate}', pres any key to continue... ");
+              Console.ReadKey(true);
+
+              // clear previous string builder
+              sb.Clear();
+              sb.Append("UPDATE Employees SET Location = N'Peru' WHERE Name = @name");
+              // convert to to string
+              sql = sb.ToString();
+
+              // create command to update value
+              using (SqlCommand command = new SqlCommand(sql, connection)) {
+                command.Parameters.AddWithValue("@name", userToUpdate);
+              }
+
 
             }
   
