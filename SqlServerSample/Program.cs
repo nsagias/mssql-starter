@@ -58,8 +58,7 @@ namespace SqlServerSample
 
               // clear current string builder with variables
               sb.Clear();
-              sb.Append("INSERT Employees (Name, Location) ");
-              sb.Append("VALUES (@name, @location);");
+              sb.Append("INSERT Employees (Name, Location) VALUES (@name, @location);");
               sql = sb.ToString();
 
               // create new command execute values
