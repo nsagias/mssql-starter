@@ -8,7 +8,11 @@ namespace SqlServerSample
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder.DataSource = "localhost";
+            builder.UserID = "sa";
+            builder.Password = "secret";
+            builder.InitialCatalog = "master";
         }
     }
 }
