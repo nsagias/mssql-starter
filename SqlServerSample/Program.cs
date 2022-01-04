@@ -8,6 +8,7 @@ namespace SqlServerSample
     {
         static void Main(string[] args)
         {
+          try {
             // connection string
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder.DataSource = "localhost";
@@ -21,9 +22,13 @@ namespace SqlServerSample
               connection.Open();
               Console.WriteLine("Connected.");
             }
+  
+          } catch (SqlException e) {
 
-            Console.WriteLine("All done.  Press any key to finish ...");
-            Console.ReadKey(true);
-        }
+            Console.WriteLine(e.ToString());
+          }
+          Console.WriteLine("All done.  Press any key to finish ...");
+          Console.ReadKey(true);
+    }
     }
 }
