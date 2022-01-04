@@ -93,6 +93,21 @@ namespace SqlServerSample
                 Console.WriteLine($"{rowsAffected}  row(s) updated");
               }
 
+              // Delete one user
+              String userToDelete ="Dingo";
+              Console.Write($"Deleting user '{userToDelete}', press any key to continue.... ");
+              Console.ReadKey(true);
+              // clear string builder
+              sb.Clear();
+              sb.Append("DELETE FROM Employees WHERE Name = @name;");
+              sql = sb.ToString();
+              using (SqlCommand  command = new SqlCommand(sql, connection)) {
+                command.Parameters.AddWithValue("@name", userToDelete);
+                int rowsAffected = command.ExecuteNonQuery();
+                Console.WriteLine($"{rowsAffected} row(s) deleted");
+              }
+
+
 
             }
   
