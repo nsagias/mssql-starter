@@ -21,6 +21,18 @@ namespace SqlServerSample
             using (SqlConnection connection = new SqlConnection(builder.ConnectionString)){
               connection.Open();
               Console.WriteLine("Connected.");
+
+              // create a sample database
+              Console.Write("Dropping and creating database sample data .....");
+              String sql = "DROP DATABASE IF EXISTS [firstExampleDB]; CREATE DATABASE [firstExampleDB";
+              
+              // create command/cmd for sql
+              using (SqlCommand command = new SqlCommand(sql, connection)) {
+                command.ExecuteNonQuery();
+                Console.WriteLine("Done.");
+              }
+
+
             }
   
           } catch (SqlException e) {
