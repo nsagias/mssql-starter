@@ -53,6 +53,28 @@ namespace SqlServerSample
                 Console.WriteLine("Done.");
               }
 
+              // insert new row 
+              Console.Write("Inserting a new row into table, press any key to continue");
+              Console.ReadKey(true);
+
+              // clear current string builder with variables
+              sb.Clear();
+              sb.Append("INSERT Employees (Name, Location");
+              sb.Append("VALUES (@name, @location)");
+              sql = sb.ToString();
+
+              // create new command execute values
+              using (SqlCommand command = new SqlCommand(sql, connection)) {
+                // create command to add values anem and locations
+                command.Parameters.AddWithValue("@name", "Bingo");
+                command.Parameters.AddWithValue("@location", "Bingo Hall");
+                // get the nummber of rows affected when commands is executed
+                int rowsAffected = command.ExecuteNonQuery();
+                // console write the lines to inform user on the command line
+                Console.WriteLine($"{rowsAffected} row(s) inserted");
+              }
+
+
             }
   
           } catch (SqlException e) {
