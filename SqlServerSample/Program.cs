@@ -107,6 +107,11 @@ namespace SqlServerSample
                 Console.WriteLine($"{rowsAffected} row(s) deleted");
               }
 
+              // Read/ Get one
+              Console.WriteLine("Read data from table, press anykey to continue...");
+              Console.ReadKey(true);
+              sql =  "SELECT Id, Name, Location FROM Employers;";
+
 
 
             }
