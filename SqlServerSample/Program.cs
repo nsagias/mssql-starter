@@ -37,11 +37,7 @@ namespace SqlServerSample
               // create use new table and insert rows using string builder
               StringBuilder sb = new StringBuilder();
               sb.Append("USE FirstExampleDB; ");
-              sb.Append("CREATE TABLE Employees ( ");
-              sb.Append(" Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY, ");
-              sb.Append(" Name NVARCHAR(50), ");
-              sb.Append(" Location NVARCHAR(50) ");
-              sb.Append("); ");
+              sb.Append("CREATE TABLE Employees ( Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY, Name NVARCHAR(50), Location NVARCHAR(50)); ");
               sb.Append("INSERT INTO Employees (Name, Location) VALUES ");
               sb.Append("(N'Nick', N'Canada'), ");
               sb.Append("(N'Bob', N'Lost Country'), ");
