@@ -13,7 +13,7 @@ namespace SqlServerSample
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder.DataSource = "localhost";
             builder.UserID = "sa";
-            builder.Password = "secret";
+            builder.Password = "SuperSecret1";
             builder.InitialCatalog = "master";
 
             // connect to mssql server
@@ -24,7 +24,7 @@ namespace SqlServerSample
 
               // create a sample database
               Console.Write("Dropping and creating database sample data .....");
-              String sql = "DROP DATABASE IF EXISTS [FirstExampleDB]; CREATE DATABASE [FirstExampleDB";
+              String sql = "DROP DATABASE IF EXISTS [FirstExampleDB]; CREATE DATABASE [FirstExampleDB]";
               
               // create command/cmd for sql
               using (SqlCommand command = new SqlCommand(sql, connection)) {
@@ -32,7 +32,7 @@ namespace SqlServerSample
                 Console.WriteLine("Done.");
               }
               // create table and insert mock data manually
-              Console.Write("Creating smaple table with data, press any key to continue");
+              Console.Write("Creating sample table with data, press any key to continue");
               Console.ReadKey(true);
               // create use new table and insert rows using string builder
               StringBuilder sb = new StringBuilder();
@@ -45,7 +45,7 @@ namespace SqlServerSample
               sb.Append("INSERT INTO Employees (Name, Location) VALUES ");
               sb.Append("(N'Nick', N'Canada'), ");
               sb.Append("(N'Bob', N'Lost Country'), ");
-              sb.Append("(N'Dingo', N'Australia'), ");
+              sb.Append("(N'Dingo', N'Australia'); ");
               sql = sb.ToString();
               // execute insertion into database and say done when complete
               using (SqlCommand command = new SqlCommand(sql, connection)) {
@@ -59,8 +59,8 @@ namespace SqlServerSample
 
               // clear current string builder with variables
               sb.Clear();
-              sb.Append("INSERT Employees (Name, Location");
-              sb.Append("VALUES (@name, @location)");
+              sb.Append("INSERT Employees (Name, Location) ");
+              sb.Append("VALUES (@name, @location);");
               sql = sb.ToString();
 
               // create new command execute values
@@ -110,7 +110,16 @@ namespace SqlServerSample
               // Read/ Get one
               Console.WriteLine("Read data from table, press anykey to continue...");
               Console.ReadKey(true);
-              sql =  "SELECT Id, Name, Location FROM Employers;";
+              sql =  "SELECT Id, Name, Location FROM Employees;";
+              
+              using (SqlCommand command = new SqlCommand(sql, connection)) {
+                using(SqlDataReader reader = command.ExecuteReader()) {
+                  while (reader.Read()) {
+                  Console.WriteLine("{0} {1} {2}", reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
+
+                  }
+                }
+              }
 
 
 
