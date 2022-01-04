@@ -88,6 +88,9 @@ namespace SqlServerSample
               // create command to update value
               using (SqlCommand command = new SqlCommand(sql, connection)) {
                 command.Parameters.AddWithValue("@name", userToUpdate);
+                // get number after execute
+                int rowsAffected = command.ExecuteNonQuery();
+                Console.WriteLine($"{rowsAffected}  row(s) updated");
               }
 
 
