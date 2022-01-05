@@ -49,6 +49,13 @@ namespace SqlServerEFExample
             foreach(var t in query) {
               Console.WriteLine(t.ToString());
             }
+
+            // Update due DueDate of a task
+            Task taskToUpdate = context.Tasks.First(); // get the first task
+            Console.WriteLine($"\nUpdating task: {taskToUpdate.ToString()}");
+            taskToUpdate.DueDate = DateTime.Parse("02-06-2022");
+            context.SaveChanges();
+            Console.WriteLine($"Duedate Changed {taskToUpdate.ToString()}");
           }
           
         } catch (Exception e) {
