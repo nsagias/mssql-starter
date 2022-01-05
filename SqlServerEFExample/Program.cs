@@ -37,10 +37,10 @@ namespace SqlServerEFExample
             context.SaveChanges();
             Console.WriteLine($"\nCreate Task {newTask.ToString()}");
 
-            // // Associate, assign task to user
-            // newTask.AssignedTo = newUser;
-            // context.SaveChanges();
-            // Console.WriteLine($"\nAssigned task to {newTask.Title} 'to user'  {newUser.GetFullName()}");
+            // Associate, assign task to user
+            newTask.AssignedTo = newUser;
+            context.SaveChanges();
+            Console.WriteLine($"\nAssigned task to {newTask.Title} 'to user'  {newUser.GetFullName()}");
           }
           
         } catch (Exception e) {
