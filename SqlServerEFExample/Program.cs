@@ -68,6 +68,18 @@ namespace SqlServerEFExample
               context.Tasks.Remove(t);
             }
             context.SaveChanges();
+
+            // Get all after delete
+            Console.WriteLine("\nTasks after delete");
+            List<Task> tasksAfterDelete = (from t in context.Tasks select t).ToList<Task>();
+            if (tasksAfterDelete.Count == 0) {
+              Console.WriteLine("[TASK LIST IS EMPTY]");
+            } else {
+              foreach (Task t in query) {
+                Console.WriteLine(t.ToString());
+              }
+            }
+
           }
           
         } catch (Exception e) {
