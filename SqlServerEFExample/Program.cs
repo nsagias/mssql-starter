@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace SqlServerEFExample
 {
@@ -17,6 +18,12 @@ namespace SqlServerEFExample
           builder.UserID = "sa";
           builder.Password = "SuperSecret1";
           builder.InitialCatalog = "master";
+
+          using (EFExampleContext context  = new EFExampleContext(builder.ConnectionString)) {
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+            Console.WriteLine("Create database and schema from Classes");
+          }
           
         } catch (Exception e) {
           Console.WriteLine(e.ToString());
