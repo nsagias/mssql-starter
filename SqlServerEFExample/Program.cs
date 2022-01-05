@@ -44,7 +44,7 @@ namespace SqlServerEFExample
 
             // Find incomplete tassk and assign to user named "Nick"
             var query = from t in context.Tasks
-                        where t.IsComplete == false && t.AssingedTo.FirstName.Equals("Nick")
+                        where t.IsComplete == false && t.AssignedTo.FirstName.Equals("Nick")
                         select t;
             foreach(var t in query) {
               Console.WriteLine(t.ToString());
