@@ -56,6 +56,18 @@ namespace SqlServerEFExample
             taskToUpdate.DueDate = DateTime.Parse("02-06-2022");
             context.SaveChanges();
             Console.WriteLine($"Duedate Changed {taskToUpdate.ToString()}");
+
+            // Delete all tasks with a dueDate in 2022
+            Console.WriteLine("\nDelete All tasks with a DueDate of 2022");
+            DateTime dueDate2022 = DateTime.Parse("12-31-2022");
+            query = from t in context.Tasks
+                    where t.DueDate < dueDate2022
+                    select t;
+            foreach(Task t in query) {
+              Console.WriteLine($"Deleting task: {t.ToString()}");
+              context.Tasks.Remove(t);
+            }
+            context.SaveChanges();
           }
           
         } catch (Exception e) {
