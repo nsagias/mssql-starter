@@ -31,11 +31,11 @@ namespace SqlServerEFExample
             context.SaveChanges();
             Console.WriteLine($"\nCreated User: {newUser.ToString()}");
 
-            // // Create new task and save to DB
-            // Task newTask = new Task() {Title = "Work out", IsComplete = false, DateTime.Parse("02-02-2022")};
-            // context.Tasks.Add(newTask);
-            // context.SaveChanges();
-            // Console.WriteLine($"\nCreate Task {newTask.ToString()}");
+            // Create new task and save to DB
+            Task newTask = new Task() {Title = "Work out", IsComplete = false, DueDate = DateTime.Parse("02-02-2022")};
+            context.Tasks.Add(newTask);
+            context.SaveChanges();
+            Console.WriteLine($"\nCreate Task {newTask.ToString()}");
 
             // // Associate, assign task to user
             // newTask.AssignedTo = newUser;
