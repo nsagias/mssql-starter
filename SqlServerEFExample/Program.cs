@@ -23,6 +23,14 @@ namespace SqlServerEFExample
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             Console.WriteLine("Create database and schema from Classes");
+
+            // Create new user
+            User newTask = new User () { FirstName = "Nick", LastName = "Sagias"};
+            context.Users.Add(newUser);
+            context.SaveChanges();
+            Console.WriteLine($"\nCreated User: {newUser.ToString()}");
+
+            
           }
           
         } catch (Exception e) {
