@@ -18,7 +18,7 @@ namespace SqlServerEFExample
           builder.DataSource = "localhost";
           builder.UserID = "sa";
           builder.Password = "SuperSecret1";
-          builder.InitialCatalog = "master";
+          builder.InitialCatalog = "master2";
 
           using (EFExampleContext context  = new EFExampleContext(builder.ConnectionString)) {
             context.Database.EnsureDeleted();
@@ -26,21 +26,21 @@ namespace SqlServerEFExample
             Console.WriteLine("Create database and schema from Classes");
 
             // Create new user and save to DB
-            User newTask = new User () { FirstName = "Nick", LastName = "Sagias"};
+            User newUser = new User () { FirstName = "Nick", LastName = "Sagias"};
             context.Users.Add(newUser);
             context.SaveChanges();
             Console.WriteLine($"\nCreated User: {newUser.ToString()}");
 
-            // Create new task and save to DB
-            Task newTask = new Task() {Title = "Work out", IsComplete = false, DateTime.Parse("02-02-2022")};
-            context.Tasks.Add(newTask);
-            context.SaveChanges();
-            Console.WriteLine($"\nCreate Task {newTask.ToString()}");
+            // // Create new task and save to DB
+            // Task newTask = new Task() {Title = "Work out", IsComplete = false, DateTime.Parse("02-02-2022")};
+            // context.Tasks.Add(newTask);
+            // context.SaveChanges();
+            // Console.WriteLine($"\nCreate Task {newTask.ToString()}");
 
-            // Associate, assign task to user
-            newTask.AssignedTo = newUser;
-            context.SaveChanges();
-            Console.WriteLine($"\nAssigned task to {newTask.Title} 'to user'  {newUser.GetFullName()}");
+            // // Associate, assign task to user
+            // newTask.AssignedTo = newUser;
+            // context.SaveChanges();
+            // Console.WriteLine($"\nAssigned task to {newTask.Title} 'to user'  {newUser.GetFullName()}");
           }
           
         } catch (Exception e) {
