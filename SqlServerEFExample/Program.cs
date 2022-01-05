@@ -31,7 +31,10 @@ namespace SqlServerEFExample
             Console.WriteLine($"\nCreated User: {newUser.ToString()}");
 
             // Create new task and save to DB
-            
+            Task newTask = new Task() {Title = "Work out", IsComplete = false, DateTime.Parse("02-02-2022")};
+            context.Tasks.Add(newTask);
+            context.SaveChanges();
+            Console.WriteLine($"\nCreate Task {newTask.ToString()}");
           }
           
         } catch (Exception e) {
