@@ -36,11 +36,23 @@ namespace SqlServerEFExample
             context.Tasks.Add(newTask);
             context.SaveChanges();
             Console.WriteLine($"\nCreate Task {newTask.ToString()}");
+            
 
             // Associate, assign task to user
             newTask.AssignedTo = newUser;
             context.SaveChanges();
             Console.WriteLine($"\nAssigned task to {newTask.Title} 'to user'  {newUser.GetFullName()}");
+
+             // Create new task and save to DB
+            newTask = new Task() {Title = "Work out", IsComplete = false, DueDate = DateTime.Parse("02-02-2023")};
+            context.Tasks.Add(newTask);
+            context.SaveChanges();
+            Console.WriteLine($"\nCreate Task {newTask.ToString()}");
+
+            newTask.AssignedTo = newUser;
+            context.SaveChanges();
+            Console.WriteLine($"\nAssigned task to {newTask.Title} 'to user'  {newUser.GetFullName()}");
+
 
             // Find incomplete tassk and assign to user named "Nick"
             var query = from t in context.Tasks
@@ -74,10 +86,13 @@ namespace SqlServerEFExample
             List<Task> tasksAfterDelete = (from t in context.Tasks select t).ToList<Task>();
             if (tasksAfterDelete.Count == 0) {
               Console.WriteLine("[TASK LIST IS EMPTY]");
-            } else {
-              foreach (Task t in query) {
+            } else if (tasksAfterDelete.Count > 0) {
+
+              Console.WriteLine("-----test--------");
+              foreach (Task t in tasksAfterDelete) {
                 Console.WriteLine(t.ToString());
               }
+              Console.WriteLine(tasksAfterDelete.Count);
             }
 
           }
